@@ -45,9 +45,24 @@ class ListaScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(8.0),
+              child: TextField()
+            ),
             Expanded(child: 
               ListView (
                 children: <Widget>[
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
+                  getItem(),
                   getItem()
                 ],
               )
