@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_tarefas_app/tarefa.dart';
 
 void main() {
   runApp(new ListaTarefasApp());
@@ -16,7 +17,13 @@ class ListaTarefasApp extends StatelessWidget {
 
 class ListaScreen extends StatelessWidget {
 
-  Widget getItem() {
+  List<Tarefa> tarefas = new List<Tarefa>();
+
+  void adicionaTarefa(String nome) {
+    tarefas.add(Tarefa(nome));
+  }
+
+  Widget getItem(Tarefa tarefa) {
     return new Row(
               children: <Widget>[
                 IconButton(
@@ -27,8 +34,8 @@ class ListaScreen extends StatelessWidget {
                 new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Lavar o carro"),
-                    Text("13/09/2018")
+                    Text(tarefa.nome),
+                    Text(tarefa.data.toIso8601String())
                   ],
                 )
               ],
@@ -47,24 +54,18 @@ class ListaScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(8.0),
-              child: TextField()
+              child: TextField(
+                onSubmitted: (value) {
+                  adicionaTarefa(value);
+                },
+              )
             ),
             Expanded(child: 
-              ListView (
-                children: <Widget>[
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem(),
-                  getItem()
-                ],
+              ListView.builder(
+                itemCount: tarefas.length,
+                itemBuilder: (_, indice) {
+                  return getItem(tarefas[indice]);
+                },
               )
             )
           ],
