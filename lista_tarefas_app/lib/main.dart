@@ -70,9 +70,7 @@ class ListaScreenState extends State<ListaScreen> {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 controller: controller,
-                onSubmitted: (value) {
-                  adicionaTarefa(value);
-                },
+                onSubmitted: adicionaTarefa
               )
             ),
             Expanded(
