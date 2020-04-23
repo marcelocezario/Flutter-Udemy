@@ -26,11 +26,15 @@ class ListaScreen extends StatefulWidget {
 class ListaScreenState extends State<ListaScreen> {
 
   List<Tarefa> tarefas = new List<Tarefa>();
+  TextEditingController controller = new TextEditingController();
+  
 
   void adicionaTarefa(String nome) {
     setState(() {
       tarefas.add(Tarefa(nome));
     });
+
+    controller.clear();
   }
 
   Widget getItem(Tarefa tarefa) {
@@ -65,6 +69,7 @@ class ListaScreenState extends State<ListaScreen> {
             Container(
               padding: EdgeInsets.all(8.0),
               child: TextField(
+                controller: controller,
                 onSubmitted: (value) {
                   adicionaTarefa(value);
                 },
