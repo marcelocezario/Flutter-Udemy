@@ -41,9 +41,17 @@ class ListaScreenState extends State<ListaScreen> {
     return new Row(
               children: <Widget>[
                 IconButton(
-                  icon: new Icon(Icons.check_box, color: Colors.green,),
+                  icon: new Icon(tarefa.concluida ? Icons.check_box : Icons.check_box_outline_blank, color: Colors.green,),
                   iconSize: 42.0,
-                  onPressed: () { },
+                  onPressed: () {
+                    setState(() {
+                      if (tarefa.concluida) {
+                        tarefa.concluida = false;
+                      } else {
+                        tarefa.concluida = true;
+                      }
+                    });
+                  },
                 ),
                 new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
