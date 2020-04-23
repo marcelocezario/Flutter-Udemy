@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lista_tarefas_app/tarefa.dart';
 
 void main() {
-  runApp(new ListaTarefasApp());
+  runApp(new TodoListApp());
 }
 
-class ListaTarefasApp extends StatelessWidget {
+class TodoListApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
@@ -15,12 +15,22 @@ class ListaTarefasApp extends StatelessWidget {
   }  
 }
 
-class ListaScreen extends StatelessWidget {
+class ListaScreen extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return new ListaScreenState();
+  }
+}
+
+class ListaScreenState extends State<ListaScreen> {
 
   List<Tarefa> tarefas = new List<Tarefa>();
 
   void adicionaTarefa(String nome) {
-    tarefas.add(Tarefa(nome));
+    setState(() {
+      tarefas.add(Tarefa(nome));
+    });
   }
 
   Widget getItem(Tarefa tarefa) {
@@ -39,7 +49,7 @@ class ListaScreen extends StatelessWidget {
                   ],
                 )
               ],
-            );
+      );
   } 
 
   @override
@@ -60,12 +70,12 @@ class ListaScreen extends StatelessWidget {
                 },
               )
             ),
-            Expanded(child: 
-              ListView.builder(
+            Expanded(
+              child: ListView.builder (
                 itemCount: tarefas.length,
                 itemBuilder: (_, indice) {
                   return getItem(tarefas[indice]);
-                },
+                }
               )
             )
           ],
