@@ -13,7 +13,9 @@ class _HomeState extends State<Home> {
   int _people = 0;
 
   void _changePeople(int delta) {
-    _people += delta;
+    setState(() {
+      _people += delta;
+    });
   }
 
   @override
