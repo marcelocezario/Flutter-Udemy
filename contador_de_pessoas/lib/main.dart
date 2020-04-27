@@ -12,6 +12,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _people = 0;
 
+  void _changePeople(int delta){
+    _people += delta;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,7 +45,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(fontSize: 40.0, color: Colors.white),
                       ),
                       onPressed: () {
-                        _people++;
+                        _changePeople(1);
                       },
                     )),
                 Padding(
@@ -51,7 +56,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(fontSize: 40.0, color: Colors.white),
                       ),
                       onPressed: () {
-                        _people--;
+                        _changePeople(-1);
                       },
                     )),
               ],
