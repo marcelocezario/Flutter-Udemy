@@ -15,6 +15,40 @@ class _HomeState extends State<Home> {
   TextEditingController weightController = TextEditingController();
   TextEditingController heightController = TextEditingController();
 
+  String _infoText = "Informe seus dados!";
+
+  void _resetFields() {
+    setState(() {
+      weightController.text = "";
+      heightController.text = "";
+      _infoText = "Informe seus dados!";
+    });
+  }
+
+  void _calculate() {
+    setState(() {
+      double weight = double.parse(weightController.text);
+      double height = double.parse(heightController.text) / 100;
+      double imc = weight / (height * height);
+      print("Imc = $imc");
+      if (imc < 17) {
+        _infoText = "Muito abaixo do peso (imc ${imc.toStringAsPrecision(4)})";
+      } else if (imc < 18.5) {
+        _infoText = "Abaixo do peso (imc ${imc.toStringAsPrecision(4)})";
+      } else if (imc < 25) {
+        _infoText = "Peso normal (imc ${imc.toStringAsPrecision(4)})";
+      } else if (imc < 30) {
+        _infoText = "Acima do peso (imc ${imc.toStringAsPrecision(4)})";
+      } else if (imc < 35) {
+        _infoText = "Obesidade I (imc ${imc.toStringAsPrecision(4)})";
+      } else if (imc < 40) {
+        _infoText = "Obesidade II severa (imc ${imc.toStringAsPrecision(4)})";
+      } else {
+        _infoText = "Obesidade III mórbida (imc ${imc.toStringAsPrecision(4)})";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +59,7 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () {},
+              onPressed: _resetFields,
             )
           ],
         ),
@@ -59,7 +93,7 @@ class _HomeState extends State<Home> {
                 child: Container(
                   height: 50.0,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: _calculate,
                     child: Text(
                       "Calcular",
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
@@ -69,7 +103,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Text(
-                "Info",
+                _infoText,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.green, fontSize: 25.0),
               )
