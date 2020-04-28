@@ -20,10 +20,11 @@ class _HomeState extends State<Home> {
   String _infoText = "Informe seus dados!";
 
   void _resetFields() {
+    weightController.text = "";
+    heightController.text = "";
     setState(() {
-      weightController.text = "";
-      heightController.text = "";
       _infoText = "Informe seus dados!";
+      _formKey = GlobalKey<FormState>();
     });
   }
 
