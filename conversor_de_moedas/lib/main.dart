@@ -45,8 +45,8 @@ class _HomeState extends State<Home> {
       _clearAll();
     } else {
       double real = double.parse(text);
-      dolarController.text = (real * dolar).toStringAsFixed(2);
-      euroController.text = (real * euro).toStringAsFixed(2);
+      dolarController.text = (real / dolar).toStringAsFixed(2);
+      euroController.text = (real / euro).toStringAsFixed(2);
     }
   }
 
