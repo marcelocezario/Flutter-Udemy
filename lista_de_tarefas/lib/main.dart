@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home()
+  ));
 }
 
 class Home extends StatefulWidget {
