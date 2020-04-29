@@ -7,6 +7,8 @@ const request = "https://api.hgbrasil.com/finance?format=json-cors&key=50e5bb16"
 
 void main() async {
 
+  print(await getData());
+
   runApp(MaterialApp(
     home: Container()
   ));
