@@ -148,6 +148,6 @@ Widget buildTextField(String label, String prefix,
         prefixText: prefix + " "),
     style: TextStyle(color: Colors.amber, fontSize: 25.0),
     onChanged: function,
-    keyboardType: TextInputType.number,
+    keyboardType: TextInputType.numberWithOptions(decimal: true),
   );
 }
