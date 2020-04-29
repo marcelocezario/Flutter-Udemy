@@ -7,14 +7,31 @@ const request = "https://api.hgbrasil.com/finance?format=json-cors&key=50e5bb16"
 
 void main() async {
 
-  print(await getData());
-
   runApp(MaterialApp(
-    home: Container()
+    home: Home()
   ));
 }
 
 Future<Map> getData() async {
   http.Response response = await http.get(request);
   return json.decode(response.body);
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text("\$ Conversor \$"),
+        backgroundColor: Colors.amber,
+        centerTitle: true,
+      ),
+    );
+  }
 }
