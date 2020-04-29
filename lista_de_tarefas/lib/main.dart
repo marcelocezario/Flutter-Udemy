@@ -42,6 +42,25 @@ class _HomeState extends State<Home> {
     });
   }
 
+  Future<Null> _refresh() async {
+    await Future.delayed(Duration(seconds: 1));
+
+    setState(() {
+      _toDoList.sort((a, b) {
+        if (a["ok"] && !b["ok"])
+          return 1;
+        else if (!a["ok"] && b["ok"])
+          return -1;
+        else
+          return 0;
+      });
+
+      _saveData();
+    });
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,11 +93,15 @@ class _HomeState extends State<Home> {
             ),
           ),
           Expanded(
-              child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10.0),
-                  itemCount: _toDoList.length,
-                  itemBuilder: buildItem
-              ))
+              child: RefreshIndicator(
+                  onRefresh: _refresh,
+                  child: ListView.builder(
+                      padding: EdgeInsets.only(top: 10.0),
+                      itemCount: _toDoList.length,
+                      itemBuilder: buildItem
+                  )
+              )
+          )
         ],
       ),
     );
@@ -86,7 +109,10 @@ class _HomeState extends State<Home> {
 
   Widget buildItem(BuildContext context, int index) {
     return Dismissible(
-      key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
+      key: Key(DateTime
+          .now()
+          .millisecondsSinceEpoch
+          .toString()),
       background: Container(
         color: Colors.red,
         child: Align(
@@ -127,7 +153,7 @@ class _HomeState extends State<Home> {
                     _saveData();
                   });
                 }),
-              duration: Duration(seconds: 2),
+            duration: Duration(seconds: 2),
           );
           Scaffold.of(context).showSnackBar(snack);
         });
