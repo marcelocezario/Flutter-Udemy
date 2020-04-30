@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
           "https://api.giphy.com/v1/gifs/trending?api_key=rTFroV9LGWvq8V4NrfF4uqdq6p46U0wC&limit=20&rating=G");
     else
       response = await http.get(
-          "https://api.giphy.com/v1/gifs/search?api_key=rTFroV9LGWvq8V4NrfF4uqdq6p46U0wC&q=dogs&limit=20&offset=75&rating=G&lang=en");
+          "https://api.giphy.com/v1/gifs/search?api_key=rTFroV9LGWvq8V4NrfF4uqdq6p46U0wC&q=$_search&limit=20&offset=$_offset&rating=G&lang=en");
   }
 }
 
