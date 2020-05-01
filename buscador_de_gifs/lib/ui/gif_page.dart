@@ -10,8 +10,9 @@ class GifPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(_gifData["title"]),
+          title: Text(_gifData["title"], style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         backgroundColor: Colors.black,
         body: Center(
