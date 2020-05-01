@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(10.0),
-            child:           TextField(
+            child: TextField(
               decoration: InputDecoration(
                   labelText: "Pesquise Aqui!",
                   labelStyle: TextStyle(color: Colors.white),
@@ -55,6 +55,11 @@ class _HomePageState extends State<HomePage> {
               ),
               style: TextStyle(color: Colors.white, fontSize: 18.0),
               textAlign: TextAlign.center,
+              onSubmitted: (text){
+                setState(() {
+                  _search = text;
+                });
+              },
             ),
           ),
           Expanded(
@@ -96,7 +101,7 @@ class _HomePageState extends State<HomePage> {
         itemCount: snapshot.data["data"].length,
         itemBuilder: (context, index){
           return GestureDetector(
-            child: Image.network(snapshot.data["data"][index]["images"]["fixed_height"]["url"],
+            child: Image.network(snapshot.data["data"][index]["images"]["preview_gif"]["url"],
               height: 300.0,
               fit: BoxFit.cover,),
           );
