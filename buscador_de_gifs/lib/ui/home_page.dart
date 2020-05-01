@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                 onSubmitted: (text) {
                   setState(() {
                     _search = text;
+                    _offset = 0;
                   });
                 },
               ),
