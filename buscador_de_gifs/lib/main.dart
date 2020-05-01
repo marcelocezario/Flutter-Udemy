@@ -3,7 +3,8 @@ import 'package:buscadordegifs/ui/home_page.dart';
 
 void main () {
   runApp(MaterialApp(
-    home: HomePage (),
+      debugShowCheckedModeBanner: false,
+      home: HomePage (),
     theme:     ThemeData(
         hintColor: Colors.amber,
         primaryColor: Colors.white,
