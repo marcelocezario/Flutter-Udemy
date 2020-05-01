@@ -1,5 +1,6 @@
 import 'package:buscadordegifs/ui/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
   final Map _gifData;
@@ -13,10 +14,18 @@ class GifPage extends StatelessWidget {
           title: Text(_gifData["title"], style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.white),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.share),
+              onPressed: (){
+                Share.share(_gifData["images"]["original"]["url"]);
+              },
+            )
+          ],
         ),
         backgroundColor: Colors.black,
         body: Center(
-          child: Image.network(_gifData["images"]["fixed_height"]["url"]),
+          child: Image.network(_gifData["images"]["original"]["url"]),
         ));
   }
 }
