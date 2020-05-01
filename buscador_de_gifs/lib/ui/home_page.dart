@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _getGifs().then((map) {
-      print(map);
     });
   }
 
