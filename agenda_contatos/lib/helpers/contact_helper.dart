@@ -77,15 +77,16 @@ class ContactHelper {
     Database dbContact = await db;
     List listMap = await dbContact.rawQuery("SELECT * FROM $contactTable");
     List<Contact> listContact = List();
-    for(Map m in listMap){
+    for (Map m in listMap) {
       listContact.add(Contact.fromMap(m));
     }
     return listContact;
   }
 
-  Future<int> getNumber() async{
+  Future<int> getNumber() async {
     Database dbContact = await db;
-    return Sqflite.firstIntValue(await dbContact.rawQuery("SELECT COUNT (*) FROM $contactTable"));
+    return Sqflite.firstIntValue(
+        await dbContact.rawQuery("SELECT COUNT (*) FROM $contactTable"));
   }
 
   Future close() async {
@@ -103,6 +104,8 @@ class Contact {
   String phone;
   String img;
 
+  Contact();
+
   Contact.fromMap(Map map){
     id = map[idColumn];
     name = map[nameColumn];
@@ -114,11 +117,9 @@ class Contact {
   Map toMap() {
     Map<String, dynamic> map = {
     nameColumn: name,
-    emailColumn: email;
-    phoneColumn:
-    phone;
-    imgColumn:
-    img;
+    emailColumn: email,
+    phoneColumn: phone,
+    imgColumn: img
   };
     if (id != null){
     map[idColumn] = id;
