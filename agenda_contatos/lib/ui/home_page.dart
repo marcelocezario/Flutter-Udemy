@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.only(left: 10.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(contacts[index].name ?? "",
                       style: TextStyle(fontSize: 22.0,
