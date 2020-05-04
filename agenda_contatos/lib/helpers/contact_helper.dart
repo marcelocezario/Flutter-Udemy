@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 final String contactTable = "contactTable";
 final String idColumn = "idColumn";
 final String nameColumn = "nameColumn";
-final String emailColumn = "nameColumn";
+final String emailColumn = "emailColumn";
 final String phoneColumn = "phoneColumn";
 final String imgColumn = "imgColumn";
 
@@ -29,7 +29,7 @@ class ContactHelper {
 
   Future<Database> initDb() async {
     final databasesPath = await getDatabasesPath();
-    final path = join(databasesPath, "contacts.db");
+    final path = join(databasesPath, "contactsnew.db");
 
     return await openDatabase(
         path, version: 1, onCreate: (Database db, int newerVersion) async {

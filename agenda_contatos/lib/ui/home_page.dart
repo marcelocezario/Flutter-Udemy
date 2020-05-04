@@ -20,6 +20,8 @@ class _HomePageState extends State<HomePage> {
     c.email = "daniel@gmail.com";
     c.phone = "534365436";
     c.img = "imgtest";
+
+    helper.saveContact(c);
   }
 
   @override
