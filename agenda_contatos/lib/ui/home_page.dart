@@ -15,13 +15,17 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    Contact c = Contact();
+    /*Contact c = Contact();
     c.name = "Daniel Ciolfi";
     c.email = "daniel@gmail.com";
     c.phone = "534365436";
     c.img = "imgtest";
 
-    helper.saveContact(c);
+    helper.saveContact(c);*/
+
+    helper.getAllContacts().then((list) {
+      print(list);
+    });
   }
 
   @override
