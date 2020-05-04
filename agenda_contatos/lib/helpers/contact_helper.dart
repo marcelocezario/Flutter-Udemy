@@ -47,17 +47,30 @@ class ContactHelper {
     return contact;
   }
 
-  Future<Contact> getContact (int id) async {
+  Future<Contact> getContact(int id) async {
     Database dbContact = await db;
     List<Map> maps = await dbContact.query(contactTable, columns: [idColumn,
       nameColumn, emailColumn, phoneColumn, imgColumn],
         where: "$idColumn = ?",
         whereArgs: [id]);
-    if(maps.length > 0){
+    if (maps.length > 0) {
       return Contact.fromMap(maps.first);
     } else {
       return null;
     }
+  }
+
+  Future<int> deleteContact(int id) async {
+    Database dbContact = await db;
+    return await dbContact.delete(
+        contactTable, where: "$idColumn = ?", whereArgs: [id]);
+  }
+
+  Future<int> updateContact(Contact contact) async {
+    Database dbContact = await db;
+    return await dbContact.update(
+        contactTable, contact.toMap(), where: "$idColumn = ?",
+        whereArgs: [contact.id]);
   }
 
 }
